@@ -18,7 +18,7 @@ public class Adjective {
     public String getAdjective() { return adjective; }
     public void setAdjective(String adjective) { this.adjective = adjective; }*/
 
-    public void oppgave2() throws Exception {
+    public void oppgave2() throws IOException {
         System.out.println("Starter adjektiv-programmet");
         // henter filene
         File file1 = new File("storytest.txt");
@@ -37,12 +37,14 @@ public class Adjective {
         }
         scanner.close();
 
-        // teller gjennom alle adjektivene og printer de ut til terminal
-        for (String s : adjArray) {
-            while (scanner2.hasNextLine()) {
-                String row = scanner2.nextLine();
+        // går gjennom linje for linje i storytest.txt
+        while (scanner2.hasNext()) { //bytte plass med hverandre?
+            for (String s : adjArray) { //bytte plass med hverandre?
+                String row = scanner2.next();
+                // splitter opp og legger de i array?
                 String[] rowParts = row.split(" ");
 
+                // sjekker om den inneholder __ for å write adjektiv inn
                 for (String i : rowParts) {
                     if (i.equals("__")) {
                         writeToFile.write(s);
